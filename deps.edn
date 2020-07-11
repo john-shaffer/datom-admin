@@ -1,0 +1,15 @@
+{:paths ["src" "resources"]
+ :deps {org.clojure/clojure {:mvn/version "1.10.1"}}
+ :aliases {:depstar
+           {:extra-deps
+            {seancorfield/depstar {:mvn/version "1.0.94"}}}
+           :native-image
+           {:main-opts ["-m clj.native-image datom-admin.server"
+                        "--initialize-at-build-time"
+                        "-H:Name=target/datom-admin"
+                        "--no-fallback"]
+            :jvm-opts ["-Dclojure.compiler.direct-linking=true"]
+            :extra-deps
+            {clj.native-image
+             {:git/url "https://github.com/taylorwood/clj.native-image.git"
+              :sha "602587dfb5243ea8c72ed3e967c37c1f9d611723"}}}}}
